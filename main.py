@@ -1,6 +1,6 @@
 #7/19/20
 #Wulfgang Rankenburg
-#Based off of Tech From Tim Sudoku soultion finder, different implementation
+#Based off of Tech From Tim Sudoku solution finder, different implementation
 #Given a standard 9x9 Sudoku board, this program utilizes backtracking to find a valid solution
 #To any solvable 9x9 sudoku board, otherwise it returns the original board if unsolvable
 
