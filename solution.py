@@ -1,5 +1,5 @@
-#dictionary that holds all the numbers used in each box. Populated for visual purposes based on ex. in main
-usedNums = {
+#dictionary that holds all the numbers used in each box. Populated for visual purposes in branch GangWolf2-first-solver
+#Each key is the top left corner of each box in a standard 9x9 Sudoku board
     (0, 0): [],
     (0, 3): [],
     (0, 6): [],
@@ -12,7 +12,8 @@ usedNums = {
 }
 #initializes the usedNums dictionary with the default values found in each box, row, column
 #row = len(board), col = len(board), board = N x N array of arrays.
-#Assumes that board is of size 9 x 9, otherwise will not work
+#Assumes that board is of standard size 9 x 9, otherwise will not work
+#Could possibly be used to populate values for all rows and columns, but I fear KeyErrors with repeating values for boxes and rows
 def initDict(board):
     for i in range(0, 9):
         for j in range(0, 9):
@@ -70,8 +71,8 @@ def solve(board):
 
 #Searches for next empty cell in the Sudoku board
 #board = array of arrays in main.py
-#works under assumption board is 9x9 like standard Sudoku boards for easy readability
-def findEmpty(board): #0(n^2)
+#Assumes that board is of standard size 9 x 9, otherwise will not work
+def findEmpty(board): 
     for i in range(0,9):
         for j in range (0,9):
             if board[i][j] == 0:
@@ -97,7 +98,7 @@ def drawBoard(board):
 #checks the row and column of the current empty space to determine if a selected solution is valid
 #board = array of array in main, cell (row,col) tuple from findEmpty, numChosen = i from findEmpty
 def checkRowCol(board, cell, numChosen):
-    # hecks row if numChosen equal to any row values
+    #checks row if numChosen equal to any row values
     for i in range(0,9):
         if board[cell[0]][i] == numChosen:
             #print("ILLEGAL: Same number in row")
@@ -117,7 +118,7 @@ def checkRowCol(board, cell, numChosen):
     if numChosen in usedNums[(row, col)]:
         #print("ILLEGAL: Same number in box")
         return False
-    #if the chosen number is not found in the list of values, then it is appended to the value list of returns True
+    #if the chosen number is not found in the list of values, then it is appended to the value list and returns True
     usedNums[(row, col)].append(numChosen)
     return True
 
